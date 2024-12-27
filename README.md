@@ -66,7 +66,7 @@ rlds_data 是part1的环境，openvla是part2的环境，llavaov是part3的环�
 
 2. ```shell
    conda activate rlds_data
-   cd /data/jcy/project/rlds_dataset_part
+   cd /project/rlds_dataset_part
    ./prepare_open_x.sh
    # bridge是现成的，copy一部分，执行👇
    ./prepare_bridge.sh
@@ -78,26 +78,26 @@ rlds_data 是part1的环境，openvla是part2的环境，llavaov是part3的环�
 
 1. 修改`generate_llavadata.sh` 里的 data_mix
 
-2. 在`/data/jcy/project/openvla/prismatic/vla/datasets/rlds/oxe/mixtures.py`注册一个mix
+2. 在`/project/openvla/prismatic/vla/datasets/rlds/oxe/mixtures.py`注册一个mix
 
 3. ```shell
    conda activate openvla
-   cd /data/jcy/project/openvla
+   cd /project/openvla
    ./generate_llavadata.sh
    # 未知原因最后会卡住，但其实已经生成好了
    ```
 
-4. python /data/jcy/project/openvla/shuffle_reid_rename.py #处理序号，shuffle，以及改成llava相对路径格式，rename是直接重命名不保留，cp是备份（debug用）
+4. python /project/openvla/shuffle_reid_rename.py #处理序号，shuffle，以及改成llava相对路径格式，rename是直接重命名不保留，cp是备份（debug用）
 
 
 
 第三步（环境3）：
 
-1. 修改`/data/jcy/project/LLaVA-NeXT/scripts/train/vla.yaml` 的json_path，image_dir（上一步生成的）
+1. 修改`/project/LLaVA-NeXT/scripts/train/vla.yaml` 的json_path，image_dir（上一步生成的）
 
 2. ```shell
    conda activate llavaov
-   cd /data/jcy/project/LLaVA-NeXT
+   cd /project/LLaVA-NeXT
    ./scripts/train/finetune_ov_vla.sh
    ```
 

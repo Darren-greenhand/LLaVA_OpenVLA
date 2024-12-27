@@ -66,7 +66,7 @@ Step 1 (part1): Download and preprocess data, requires VPN
 
 2. ```shell
    conda activate rlds_data
-   cd /data/jcy/project/rlds_dataset_part
+   cd /project/rlds_dataset_part
    ./prepare_open_x.sh
    # bridge is ready-made, copy a part and execute the following 👇
    ./prepare_bridge.sh
@@ -78,24 +78,24 @@ Step 2 (part2):
 
 1. Modify `data_mix` in `generate_llavadata.sh`.
 
-2. Register a mix in `/data/jcy/project/openvla/prismatic/vla/datasets/rlds/oxe/mixtures.py`.
+2. Register a mix in `/project/openvla/prismatic/vla/datasets/rlds/oxe/mixtures.py`.
 
 3. ```shell
    conda activate openvla
-   cd /data/jcy/project/openvla
+   cd /project/openvla
    ./generate_llavadata.sh
    # For unknown reasons, it will get stuck at the end, but it has actually been generated
    ```
 
-4. Run `python /data/jcy/project/openvla/shuffle_reid_rename.py` # Process the sequence number, shuffle, and change to llava relative path format. Rename is direct renaming without retention, cp is for backup (used for debugging).
+4. Run `python /project/openvla/shuffle_reid_rename.py` # Process the sequence number, shuffle, and change to llava relative path format. Rename is direct renaming without retention, cp is for backup (used for debugging).
 
 Step 3 (part3):
 
-1. Modify `json_path` and `image_dir` (generated in the previous step) in `/data/jcy/project/LLaVA-NeXT/scripts/train/vla.yaml`.
+1. Modify `json_path` and `image_dir` (generated in the previous step) in `/project/LLaVA-NeXT/scripts/train/vla.yaml`.
 
 2. ```shell
    conda activate llavaov
-   cd /data/jcy/project/LLaVA-NeXT
+   cd /project/LLaVA-NeXT
    ./scripts/train/finetune_ov_vla.sh
    ```
 
