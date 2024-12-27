@@ -10,6 +10,8 @@
 
 完整详细笔记（notion），主要内容包括：
 
+https://darren-dong.notion.site/OpenVLA-LLaVA-11a471fbaea480839ee6ca55f122a187?pvs=4darren-dong.notion.site/OpenVLA-LLaVA-11a471fbaea480839ee6ca55f122a187?pvs=4
+
 - OpenVLA论文里的一些架构和实现细节
 - Prismatic库（OpenVLA基于这个库改的）的大致结构
 - OpenVLA相比Prismatic库修改了哪些，细致理解
@@ -17,8 +19,6 @@
   - 下载数据（支持按比例下，不用全部下下来选，太多了）
   - 转换数据（基于OpenVLA训练改的，黑盒处理保证无误，去掉了对图片resize的操作）
   - 用LLaVA库进行训练（实现了action tokenizer，用新数据训练后可以输出action tensor）
-
-https://darren-dong.notion.site/OpenVLA-LLaVA-11a471fbaea480839ee6ca55f122a187?pvs=4darren-dong.notion.site/OpenVLA-LLaVA-11a471fbaea480839ee6ca55f122a187?pvs=4
 
 ---
 

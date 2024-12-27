@@ -1,4 +1,4 @@
-[中文](README.md)
+[中文](https://github.com/Darren-greenhand/LLaVA_OpenVLA/tree/main)
 
 ## Objective:
 
