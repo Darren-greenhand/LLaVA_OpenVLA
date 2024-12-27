@@ -56,6 +56,8 @@ Environment 3, for training LLaVA into a strong VLA model:
 
 `rlds_data` is the environment for part1, `openvla` is the environment for part2, and `llavaov` is the environment for part3.
 
+The basic environment configuration is the same as the original library. There is no magic change. The source code is changed instead of the environment.
+
 The paths are too difficult to change, so I just used the ones on the server.
 
 Step 1 (part1): Download and preprocess data, requires VPN
@@ -143,3 +145,11 @@ Default MIX:
 | fmb                                                   | 1804       | 0.2   | 356.5          |
 
 现在：113,178 trajs,  450G in memory
+
+
+
+[moojink/rlds_dataset_mod: Efficiently apply modification functions to RLDS/TFDS datasets.](https://github.com/moojink/rlds_dataset_mod/tree/main)
+
+[openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation.](https://github.com/openvla/openvla)
+
+[LLaVA-VL/LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT/)

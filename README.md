@@ -56,7 +56,9 @@ https://darren-dong.notion.site/OpenVLA-LLaVA-11a471fbaea480839ee6ca55f122a187?p
 
 rlds_data 是part1的环境，openvla是part2的环境，llavaov是part3的环境
 
-路径太难改了，我就照搬server上的了
+基本环境配置都和原本的库是一样的，没有魔改，都是改的源代码而非环境
+
+（路径太难改了，我就照搬server上的了）
 
 第一步（环境1）：下载和预处理数据，要翻墙
 
@@ -147,3 +149,13 @@ OpenVLA是一个实现VLA的很好的工作，但是里面用的模型比较老�
 | fmb                                                   | 1804       | 0.2   | 356.5          |
 
 现在：113,178条轨迹  450G
+
+
+
+致谢：
+
+[moojink/rlds_dataset_mod: Efficiently apply modification functions to RLDS/TFDS datasets.](https://github.com/moojink/rlds_dataset_mod/tree/main)
+
+[openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation.](https://github.com/openvla/openvla)
+
+[LLaVA-VL/LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT/)
