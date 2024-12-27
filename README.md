@@ -1,5 +1,8 @@
+[English](README-en.md)
+
 # LLaVA_OpenVLA
-## 目的：
+
+## 目的
 
 研究用更强的MLLM（如LLaVA-OneVision）配上OpenVLA的数据会不会相比RT系列和OpenVLA有更好的效果，同时可以灵活调整数据结构，可以研究不同数据mix对性能的影响，以及scaling law
 
@@ -11,13 +14,17 @@
 - Prismatic库（OpenVLA基于这个库改的）的大致结构
 - OpenVLA相比Prismatic库修改了哪些，细致理解
 - LLaVA-OV库修改的详细细节：
-- 下载数据（支持按比例下，不用全部下下来选，太多了）
-- 转换数据（基于OpenVLA训练改的，黑盒处理保证无误，去掉了对图片resize的操作）
-- 用LLaVA库进行训练（实现了action tokenizer，用新数据训练后可以输出action tensor）
+  - 下载数据（支持按比例下，不用全部下下来选，太多了）
+  - 转换数据（基于OpenVLA训练改的，黑盒处理保证无误，去掉了对图片resize的操作）
+  - 用LLaVA库进行训练（实现了action tokenizer，用新数据训练后可以输出action tensor）
 
 https://darren-dong.notion.site/OpenVLA-LLaVA-11a471fbaea480839ee6ca55f122a187?pvs=4darren-dong.notion.site/OpenVLA-LLaVA-11a471fbaea480839ee6ca55f122a187?pvs=4
 
+---
+
 ## 代码库
+
+[Darren-greenhand/LLaVA_OpenVLA: Converted the training data of OpenVLA into general form of multimodal training instructions and then used with LLaVA-OneVision](https://github.com/Darren-greenhand/LLaVA_OpenVLA)
 
 下载数据大概是450G，转换成llava格式大概600G
 
@@ -25,7 +32,7 @@ https://darren-dong.notion.site/OpenVLA-LLaVA-11a471fbaea480839ee6ca55f122a187?p
 
 第三步训练，8*A100，bs拉满，deepspeed zero2，大约是130H
 
-GitHub - Darren-greenhand/LLaVA_OpenVLA: Converted the training data of OpenVLA  into general form of multimodal training instructions and then used with LLaVA-OneVisiongithub.com/Darren-greenhand/LLaVA_OpenVLA
+
 
 因为几个环境相互冲突太难改了，干脆就还是用三个环境（conda很方便）：
 
@@ -41,7 +48,68 @@ GitHub - Darren-greenhand/LLaVA_OpenVLA: Converted the training data of OpenVLA 
 
 [Darren-greenhand/LLaVA-Next: LLaVA_OpenVLA part 3, Use LLaVA to train a stronger VLA model](https://github.com/Darren-greenhand/LLaVA-Next)
 
-\---
+---
+
+
+
+## 使用方法
+
+rlds_data 是part1的环境，openvla是part2的环境，llavaov是part3的环境
+
+路径太难改了，我就照搬server上的了
+
+第一步（环境1）：下载和预处理数据，要翻墙
+
+1. 更改`prepare_open_x.sh`的数据集选用和比例
+
+2. ```shell
+   conda activate rlds_data
+   cd /data/jcy/project/rlds_dataset_part
+   ./prepare_open_x.sh
+   # bridge是现成的，copy一部分，执行👇
+   ./prepare_bridge.sh
+   # 注意dobbe的数据错乱，需要修改sh文件中判断train_file的条件
+   # 注意，如果单独执行modify_rlds_dataset.py 也一定要翻墙！！！不然会出抽象bug
+   ```
+
+第二步（环境2）：
+
+1. 修改`generate_llavadata.sh` 里的 data_mix
+
+2. 在`/data/jcy/project/openvla/prismatic/vla/datasets/rlds/oxe/mixtures.py`注册一个mix
+
+3. ```shell
+   conda activate openvla
+   cd /data/jcy/project/openvla
+   ./generate_llavadata.sh
+   # 未知原因最后会卡住，但其实已经生成好了
+   ```
+
+4. python /data/jcy/project/openvla/shuffle_reid_rename.py #处理序号，shuffle，以及改成llava相对路径格式，rename是直接重命名不保留，cp是备份（debug用）
+
+
+
+第三步（环境3）：
+
+1. 修改`/data/jcy/project/LLaVA-NeXT/scripts/train/vla.yaml` 的json_path，image_dir（上一步生成的）
+
+2. ```shell
+   conda activate llavaov
+   cd /data/jcy/project/LLaVA-NeXT
+   ./scripts/train/finetune_ov_vla.sh
+   ```
+
+OK，就训练好了
+
+
+
+使用就在part3 llava库里， `python inference_action.py`
+
+
+
+
+
+
 
 LLaVA是多模态开源项目里做的很好的库（因为会开源数据，虽然1.6拖了很久），早期代码结构比较通俗易懂（后面更新以后有很多冗余，基本很难调用的代码，看的头疼（
 
