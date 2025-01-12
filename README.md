@@ -20,6 +20,10 @@ https://darren-dong.notion.site/OpenVLA-LLaVA-11a471fbaea480839ee6ca55f122a187?p
   - 转换数据（基于OpenVLA训练改的，黑盒处理保证无误，去掉了对图片resize的操作）
   - 用LLaVA库进行训练（实现了action tokenizer，用新数据训练后可以输出action tensor）
 
+ckpt剩个最初版的llava-openvla-kuka_33_franctal_33_bridge_33，用了33%的这三个数据集，链接是：https://huggingface.co/Observer/llava-openvla-kuka_33_franctal_33_bridge_33
+
+最新那个调好的mix，llava-openvla-diversitydata训到一半卡炸了，显卡提供商半天不修，拖到项目都没了，难绷
+
 ---
 
 ## 代码库
@@ -117,7 +121,7 @@ LLaVA是多模态开源项目里做的很好的库（因为会开源数据，虽
 
 OpenVLA是一个实现VLA的很好的工作，但是里面用的模型比较老旧，如果更新模型，性能可能会有较大的提升。
 
-默认的MIX：
+默认的MIX（参考openvla和各个数据集的轨迹数目平衡了一下调的，应该比较合理？）：
 
 | Registered Dataset Name                               | # Episodes | ratio | File Size (GB) |
 | ----------------------------------------------------- | ---------- | ----- | -------------- |

@@ -22,7 +22,9 @@ include the following main content:
   - Data conversion (modified based on OpenVLA training, with black-box processing to ensure accuracy, and removal of image resizing operations)
   - Training with the LLaVA library (implemented an action tokenizer, which can output action tensors after training with new data)
 
+The initial version of the checkpoint, llava-openvla-kuka_33_franctal_33_bridge_33, was trained using 33% of each of these three datasets. The link is provided: https://huggingface.co/Observer/llava-openvla-kuka_33_franctal_33_bridge_33
 
+The latest fine-tuned mix, llava-openvla-diversitydata, encountered a critical error halfway through training when the graphics card provider failed to resolve the issue for an extended period, ultimately leading to the project's termination. This situation has been quite challenging.
 
 ## Code Repository
 
@@ -109,7 +111,7 @@ LLaVA is a well-regarded library in the open-source multimodal project space (be
 
 OpenVLA is a great implementation of VLA, but it uses relatively outdated models. Updating the models could potentially lead to significant performance improvements.
 
-Default MIX:
+Default MIX（The adjustments were made by balancing the trajectory counts from OpenVLA and the various datasets, which should be quite reasonable, correct?）:
 
 
 
